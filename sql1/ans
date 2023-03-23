@@ -1,0 +1,29 @@
+1) select * from etable where dn in (10,30);
+2)SELECT * FROM dtable WHERE dn IN (SELECT dn FROM etable GROUP BY dn HAVING COUNT(*) > 1);
+3)select * from etable where ename like 's%';
+4)-
+5)-
+6)select e.ename,g.ename from etable e join etable g on (e.mgr=g.en);
+7)select dname,sum(sal) as totalsal from dtable,etable where dtable.dn=etable.dn group by dname;
+8)select * from etable e left join dtable d on e.dn=d.dn;
+9)update etable set sal=sal+sal*(10/100);
+10)delete from etable where dn in (select dn from dtable where loc='chennai');
+11) select ename,sum(sal+commission) as gross_sal from etable group by ename;
+12)alter table etable modify ename varchar(250);
+13)select current_timestamp  as 'date';
+14)create table student (stu_id int,stu_name varchar(20),branch varchar(2),phone int,address varchar(20),primary key(stu_id));
+15)select count(*) from etable where sal>10000;
+16) select min(sal),max(sal),avg(sal) from etable;
+17) select count(*),loc from etable,dtable d where etable.dn=d.dn group by loc;
+18)select ename from etable order by ename desc;
+19)create table new_etable as select en,ename,sal,dn from etable;
+20)select concat(substring(ename,1,3),sal) from etable;
+21)select * from etable where ename like 's%';
+22)select * from etable where dn in (select dn from dtable where loc='blore');
+23)select * from etable where ename regexp '^[A-K].*$';
+24)select ename from etable where mgr=(select en from etable where ename='stefen');
+25)select count(mgr),mgr from etable group by mgr order by mgr desc limit 1;
+26)select * from etable e,dtable d where e.dn=d.dn and sal=(select max(sal)from etable where sal<(select max(sal)
+from etable));
+27)select * from etable where en in (select mgr from etable);
+28)
