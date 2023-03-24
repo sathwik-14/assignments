@@ -1,8 +1,8 @@
 1) select * from etable where dn in (10,30);
 2)SELECT * FROM dtable WHERE dn IN (SELECT dn FROM etable GROUP BY dn HAVING COUNT(*) > 1);
 3)select * from etable where ename like 's%';
-4)-
-5)-
+4)select  * from etable e where datediff(now(),hiredate)/365>2;
+5)select replace(ename,'a','#') from etable ;
 6)select e.ename,g.ename from etable e join etable g on (e.mgr=g.en);
 7)select dname,sum(sal) as totalsal from dtable,etable where dtable.dn=etable.dn group by dname;
 8)select * from etable e left join dtable d on e.dn=d.dn;
@@ -26,4 +26,7 @@
 26)select * from etable e,dtable d where e.dn=d.dn and sal=(select max(sal)from etable where sal<(select max(sal)
 from etable));
 27)select * from etable where en in (select mgr from etable);
-28)
+28)select  *,datediff(now(),hiredate)/365 from etable e where e.en in (select mgr from etable);
+29)select  * from etable e where e.en in (select mgr from etable) and commission<1000 and dn in (select dn from dtable where loc='delhi');
+30)select * from etable where hiredate < (select hiredate from etable where ename='martin');
+
