@@ -1,0 +1,9 @@
+1)select c.cust_id,c.cust_name,p.pro_name  from ordr o,customer c,order_detail od,product p where od.pro_id=p.pro_id and c.cust_id=o.cust_id and o.ord_id=od.ord_id;
+2)select od.ord_id,ord_date,pro_price*quantity from order_detail od,ordr o,product p where od.pro_id=p.pro_id and od.ord_id=o.ord_id;
+3)select distinct cust_name from customer c,ordr o where  c.cust_id not in (select cust_id from ordr) ;
+4)select * from product  where  pro_id not in (select pro_id from order_detail) ;
+5)select distinct c.cust_name,sum(p.pro_price*od.quantity) from customer c join ordr o on c.cust_id=o.cust_id join order_detail od on od.ord_id=o.ord_id join product p on p.pro_id=od.pro_id group by c.cust_name;
+6)select c.cust_name from ordr o,customer c where ord_id= (select min(ord_id) from ordr) and c.cust_id=o.cust_id union (select c.cust_name from
+ ordr o,customer c where ord_id=(select max(ord_id) from ordr) and c.cust_id=o.cust_id);
+7)select g.cust_name,g.numb from (select c.*,count(o.cust_id) as numb from customer c,ordr o where c.cust_id=o.cust_id group by o.cust_id) g order by g.numb desc limit 3;
+8)
