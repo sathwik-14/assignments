@@ -6,4 +6,8 @@
 6)select c.cust_name from ordr o,customer c where ord_id= (select min(ord_id) from ordr) and c.cust_id=o.cust_id union (select c.cust_name from
  ordr o,customer c where ord_id=(select max(ord_id) from ordr) and c.cust_id=o.cust_id);
 7)select g.cust_name,g.numb from (select c.*,count(o.cust_id) as numb from customer c,ordr o where c.cust_id=o.cust_id group by o.cust_id) g order by g.numb desc limit 3;
-8)
+8)select c.cust_id,c.cust_name,year(ord_date),count(year(ord_date)) as no_of_orders from ordr o,customer c where
+c.cust_id=o.cust_id group by year(ord_date),c.cust_id having count(*)>1;
+9)select monthname(ord_date),count(month(ord_date)) as no_of_orders from ordr o group by monthname(ord_date) order by no_of_orders desc limit 1;
+10)select pro_name from product p,ordr o where p.pro_id=o.ord_id and pro_price in (select max(pro_price) from product);
+
